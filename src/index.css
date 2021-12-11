@@ -1,0 +1,233 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+body{
+    background-image: url(../src/assets/img8.png);
+    opacity: 0.85;
+    background-size:cover;
+    overflow-y: scroll;
+
+    
+}
+
+
+nav{
+    background-color: rgba(118, 212, 236, 0.945);
+    padding: 10px 10px 3px 10px;
+    box-shadow: 6px 4px 2px 1px rgba(15, 14, 14, 0.52);
+    text-align-last: left;
+}
+
+.active {
+    background-color: rgba(20, 18, 18, 0.171);
+    color: white;
+    border-radius: 4px;
+    padding: 2px 5px 5px 5px;
+
+}
+
+
+
+/*Para darle formato al logo*/
+.header{
+    display: auto;
+    width: 100%;
+    height: 10%; 
+    background-color: rgba(118, 212, 236, 0.945);
+    padding: 20px 20px 15px 50px;  
+    
+}
+
+.img-header{
+    width: 50%;
+    height: 50%;
+}
+
+
+h1, h2, h3{
+    text-align: center;
+}
+
+
+ul li{
+    display:inline-block;
+    font-size: 20px;
+    margin: 5px;
+    
+
+}
+
+
+ul li a{
+    text-decoration: none;
+    margin: 0px 40px;
+
+
+}
+
+ul li a:hover{
+    width: 90%;
+    height: 100%;
+    border-radius: 5px;
+    color: azure;
+    text-decoration: none;
+
+}
+
+
+ul li .result{
+    background-color: red;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    box-shadow: 6px 4px 2px 1px rgba(230, 51, 51, 0.52);
+    padding: 2px 40px 7px 40px;
+    margin: 0px 0px 0px 0px;
+
+ 
+}
+
+ul li .result:hover{
+    background-color: rgba(255, 0, 0, 0.719);
+    color: white;
+    border-radius: 5px;
+    box-shadow: 6px 4px 2px 1px rgba(230, 51, 51, 0.52);
+    padding: 2px 40px 7px 40px;
+    margin: 20px 0px;
+
+ 
+}
+
+/* Para dar estilos a los formularios */
+.formLogin, .formRegister, .formContact, .formcita, .formCrearUsuario{
+    margin: 50px 0px 20px 35%;
+    padding: 15px 15px 15px 20px;
+    background-color: rgba(235, 241, 243, 0.993);
+    border-radius: 5px;
+    font-style: italic;
+    font-weight: bold;
+    width: 40%;
+    height: 40%;
+    border-color: rgba(36, 35, 35, 0.835);
+    box-shadow: 6px 4px 2px 1px rgba(15, 14, 14, 0.52);
+}
+
+.btn-primary{
+    width: 100%;
+    margin: 10px 0px 0px 0%;
+
+}
+
+
+.logout{
+    background-color: rgba(15, 15, 15, 0.794);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    box-shadow: 6px 4px 2px 1px rgba(230, 51, 51, 0.52);
+    padding: 2px 40px 7px 40px;
+    margin: 0px 0px 0px 0px;
+
+ 
+}
+form-group{
+    text-align-last: left;
+    padding: 5px 5px 5px 5px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+
+
+.forgot-password,
+.forgot-password a {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+/* .form-control:focus {
+    border-color: #167bff;
+    box-shadow: none;
+  } */
+
+
+.accordion{
+    align-content: center;
+    margin: 40px 20%;
+    box-shadow: 6px 4px 2px 1px rgba(37, 36, 36, 0.52);
+    border-radius: 5px;
+
+}
+
+Accordion.Item{
+    border-radius: 5px;
+
+}
+
+.carousel-home{
+    width: 70%;
+    height: 80%;
+    margin: 20px 10px 10px 10px;
+    margin-left: 15%;
+
+}
+
+.div-form{
+    display:flex;
+    margin: -50px 5px -50px 5px;
+}
+
+.img_serv{
+    margin-top: auto;
+    width: 20rem;
+    height: 20rem;
+    padding: 10px 20px 10px 20px;
+
+}
+
+.servicios{
+    margin: 20px 0px 5px 150px;
+    padding: 20px 20px 10px 10px;
+    size: 10%;
+}
+
+.footer{
+    text-align: center;
+    margin: 20px 0px 20px 0px;
+}
+
+.resultpage{
+    text-align: center;
+    margin: 20px 250px 30px 0px;
+}
+
+
+.encabezado{
+    text-align: center;
+}
+
+
+.gestioncitas, .g-usuarios{
+    background: rgb(224, 198, 149);
+    background-size: 100%;
+    box-shadow: 6px 4px 2px 1px rgba(37, 36, 36, 0.52);
+
+}
+
+.container{
+    margin: 100px 40px;
+    
+    
+}
+
+/*Para poder justificar el div del dashboard y el div de los contenidos de las rutas*/
+main{
+    display: flex;
+
+    
+}
+
