@@ -110,19 +110,46 @@ export default function AdminPage() {
             aria-labelledby="headingExamenes"
             data-parent="#accordionSidebar"
           >
-            <div className="bg-white py-4 collapse-inner rounded">
+            <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Examenes</h6>
-              <NavLink to="/crearexamen" className="collapse-item" >
+              <NavLink to="/crearespecialidad" className="collapse-item" >
                 Especialidad
               </NavLink>
               <NavLink to="/crearexamen" className="collapse-item" >
                 Crear examen
               </NavLink>
-              <NavLink to="/crearexamen" className="collapse-item" >
+              <NavLink to="/valoresreferencia" className="collapse-item" >
                 Valores Referenciales
               </NavLink>
               <NavLink to="/listausuarios" className="collapse-item" >
                 Gestionar examenes
+              </NavLink>
+            </div>
+          </div>
+        </li>
+        <hr className="sidebar-divider" />
+        {/* Nav Item - Pages Collapse Menu */}
+        <li className="nav-item">
+          <a
+            className="nav-link collapsed"
+            href="/"
+            data-toggle="collapse"
+            data-target="#collapseResultados"
+            aria-expanded="true"
+            aria-controls="collapseResultados"
+          >
+            <span>Resultados</span>
+          </a>
+          <div
+            id="collapseResultados"
+            className="collapse"
+            aria-labelledby="headingResultados"
+            data-parent="#accordionSidebar"
+          >
+            <div className="bg-white py-2 collapse-inner rounded">
+              <h6 className="collapse-header">Resultados</h6>
+              <NavLink to="/agregarresultado" className="collapse-item" >
+                Diligenciar resultados
               </NavLink>
             </div>
           </div>

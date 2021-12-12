@@ -40,7 +40,6 @@ class RegisterPage extends React.Component {
   render() {
     const {
       rol,
-      tipo_document,
       num_document,
       nombres,
       apellidos,

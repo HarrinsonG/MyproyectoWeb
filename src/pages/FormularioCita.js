@@ -23,7 +23,7 @@ const FormularioCita = ({ crearCita }) => {
   };
 
   //Extraer los valores
-  const { usuario, fecha, hora, sede, tipo_examen, sintomas } = cita;
+  const { usuario, fecha, hora, sintomas } = cita;
   console.log(cita)
 
   //Cuando el usuario preciona enviar cita.

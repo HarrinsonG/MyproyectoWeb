@@ -28,6 +28,9 @@ import ListaCitas from "../pages/ListaCitas";
 import ListaUsuarios from "../pages/ListaUsuarios";
 import CrearUsuario from "../pages/CrearUsuario";
 import CrearExamen from "../pages/CrearExamen";
+import CrearEspecialidad from "../pages/CrearEspecialidad";
+import AgregarResultado from "../pages/AgregarResultado";
+import ValoresReferencia from "../pages/ValoresReferencia";
 
 export default function AppRouter() {
   return (
@@ -58,7 +61,10 @@ export default function AppRouter() {
             <Route path="/listacitas" component={ListaCitas} />
             <Route path="/crearusuario" component={CrearUsuario} />
             <Route path="/listausuarios" component={ListaUsuarios} />
+            <Route path="/crearespecialidad" component={CrearEspecialidad} />
             <Route path="/crearexamen" component={CrearExamen} />
+            <Route path="/agregarresultado" component={AgregarResultado} />
+            <Route path="/valoresreferencia" component={ValoresReferencia} />
           </main>
         </Router>
 

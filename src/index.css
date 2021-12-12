@@ -9,6 +9,7 @@ body{
     opacity: 0.85;
     background-size:cover;
     overflow-y: scroll;
+    size: 85%;
 
     
 }
@@ -101,7 +102,7 @@ ul li .result:hover{
 }
 
 /* Para dar estilos a los formularios */
-.formLogin, .formRegister, .formContact, .formcita, .formCrearUsuario{
+.formLogin, .formRegister, .formContact, .formcita, .formCrearUsuario, .formEspecialidad{
     margin: 50px 0px 20px 35%;
     padding: 15px 15px 15px 20px;
     background-color: rgba(235, 241, 243, 0.993);
@@ -113,6 +114,19 @@ ul li .result:hover{
     border-color: rgba(36, 35, 35, 0.835);
     box-shadow: 6px 4px 2px 1px rgba(15, 14, 14, 0.52);
 }
+
+.formCrearExamen{
+    padding: 15px 15px 15px 20px;
+    background-color: rgba(248, 187, 192, 0.665);
+    border-radius: 5px;
+    font-style: italic;
+    font-weight: bold;
+    width: 40%;
+    height: 40%;
+    border-color: rgba(36, 35, 35, 0.835);
+    box-shadow: 6px 4px 2px 1px rgba(15, 14, 14, 0.52)
+}
+
 
 .btn-primary{
     width: 100%;
@@ -179,6 +193,7 @@ Accordion.Item{
 .div-form{
     display:flex;
     margin: -50px 5px -50px 5px;
+    padding: 10px 10px 10px 10px;
 }
 
 .img_serv{
@@ -219,7 +234,8 @@ Accordion.Item{
 }
 
 .container{
-    margin: 100px 40px;
+    margin: 50px 100px;
+    padding: 10px 10px 10px 10px;
     
     
 }
@@ -231,3 +247,24 @@ main{
     
 }
 
+.resul_examenes{
+    background-color: rgb(250, 244, 244);
+    margin: 40px 40px 40px 40px;
+    padding: 50px 50px 50px 20px;
+    border-radius: 5px;
+    font-style: italic;
+    font-weight: bold;
+    width: 40%;
+    height: 40%;
+    border-color: rgba(36, 35, 35, 0.835);
+    box-shadow: 6px 4px 2px 1px rgba(15, 14, 14, 0.52)
+}
+
+.add{
+    size: 50%;
+    color: none;
+}
+.btn-add{
+    size: 50%;
+    
+}
