@@ -1,16 +1,32 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import Swal from "sweetalert2";
+
+function ListarEspecialidades() {
+  fetch("http://localhost:8000/listaEspecialidad", {
+    method: "POST",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      this.setState({ ...this.state, especialidades: data });
+    });
+}
 
 class CrearExamen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      especialidades: [],
       especialidad: "",
       nombre_examen: "",
       frecuencia: "",
       sede: "",
+      estado:"",
       requerimientos: "",
     };
+    const listaespecialidades = ListarEspecialidades.bind(this);
+    listaespecialidades();
   }
   handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,17 +37,35 @@ class CrearExamen extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const values = JSON.stringify(this.state);
-    alert(values);
+    fetch("http://localhost:8000/crearExamen", {
+      body: values,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        Swal.fire("Examen creado con exito!", "", "success");
+      });
+    this.setState({
+      especialidades: [],
+      especialidad: "",
+      nombre_examen: "",
+      frecuencia: "",
+      sede: "",
+      estado:"",
+      requerimientos: "",
+    });
   };
 
   render() {
-    const { especialidad, nombre_examen, frecuencia, sede, requerimientos } = this.state;
+    const { nombre_examen, frecuencia, requerimientos } = this.state;
 
     return (
       <Container>
         <Row>
-          <Col>
-          </Col>
+          <Col></Col>
         </Row>
         <Row>
           <Col></Col>
@@ -51,9 +85,13 @@ class CrearExamen extends React.Component {
                     aria-label="Default select example"
                   >
                     <option value="">Selecciona una opcion</option>
-                    <option value="hemograma">Hematologia</option>
-                    <option value="perfil_lipidico">Perfil lipidico</option>
-                    <option value="urianalisis">Urianalisis</option>
+                    {this.state.especialidades.map((especialidad) => {
+                      return (
+                        <option value={especialidad.especialidad}>
+                          {especialidad.especialidad}{" "}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
 
@@ -101,17 +139,37 @@ class CrearExamen extends React.Component {
                 </Row>
                 <Row>
                   <Col>
-                  <div className="form-group">
-                    <label htmlFor="floatingTextarea2">Requerimientos del examen</label>
+                    <div className="form-group">
+                      <label htmlFor="floatingTextarea2">
+                        Requerimientos del examen
+                      </label>
                       <textarea
                         className="form-control"
+                        name="requerimientos"
                         placeholder="Leave a comment here"
                         id="floatingTextarea2"
-                        defaultValue={""}
                         value={requerimientos}
                         onChange={this.handleChange}
                       />
-                     
+                    </div>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <div className="form-group">
+                      <label>Estado: </label>
+                      <select
+                        defaultValue=""
+                        name="estado"
+                        id="estado"
+                        onChange={this.handleChange}
+                        className="form-control"
+                        aria-label="Default select example"
+                      >
+                        <option value="">Selecciona una opcion</option>
+                        <option value="activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                      </select>
                     </div>
                   </Col>
                 </Row>
@@ -122,9 +180,7 @@ class CrearExamen extends React.Component {
               </form>
             </Row>
           </Col>
-          <Col>
-           
-          </Col>
+          <Col></Col>
         </Row>
       </Container>
     );

@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import Table from 'react-bootstrap/Table'
+import { Link } from "react-router-dom";
 
 export default class ListaCitas extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="container w-75">
       <div >
           <h1>Gestionar Citas</h1>
       </div>
+      <div className="table-responsive">
         <Table className='gestioncitas' striped bordered hover>
           <thead className='encabezado' >
             <tr >
@@ -28,7 +30,7 @@ export default class ListaCitas extends Component {
               <td>10:00 am</td>
               <td>Hemograma</td>
               <td>Sede Norte</td>
-              <td><button className="btn btn-danger btn-block">Reagendar</button> </td>
+              <td><Link to="/reagendarcita"> <button className="btn btn-danger btn-block">Reagendar</button> </Link> </td>
               <td><button className="btn btn-info btn-block">Cancelar</button> </td>
             </tr>
             <tr>
@@ -38,7 +40,7 @@ export default class ListaCitas extends Component {
               <td>09:00 am</td>
               <td>Perfil lipídico</td>
               <td>Sede Sur</td>
-              <td><button className="btn btn-danger btn-block">Reagendar</button> </td>
+              <td><Link to="/reagendarcita"> <button className="btn btn-danger btn-block">Reagendar</button> </Link> </td>
               <td><button className="btn btn-info btn-block">Cancelar</button> </td>
             </tr>
             <tr>
@@ -48,11 +50,12 @@ export default class ListaCitas extends Component {
               <td>08:00 am</td>
               <td>Hemograma</td>
               <td>Sede Norte</td>
-              <td><button className="btn btn-danger btn-block">Reagendar</button> </td>
+              <td><Link to="/reagendarcita"> <button className="btn btn-danger btn-block">Reagendar</button> </Link> </td>
               <td><button className="btn btn-info btn-block">Cancelar</button> </td>
             </tr>
           </tbody>
         </Table>
+        </div>
       </div>
     );
   }

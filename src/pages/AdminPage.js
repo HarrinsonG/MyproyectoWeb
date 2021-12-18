@@ -22,42 +22,10 @@ export default function AdminPage() {
         <hr className="sidebar-divider my-0" />
         {/* Nav Item - Dashboard */}
         <li className="nav-item active">
-          <a className="nav-link" href="/username:admin">
+          <a className="nav-link" href="/profile/:username">
             <i className="fas fa-fw fa-tachometer-alt" />
             <span>Dashboard</span>
           </a>
-        </li>
-        {/* Divider */}
-        <hr className="sidebar-divider" />
-        {/* Nav Item - Pages Collapse Menu */}
-        <li className="nav-item">
-          <a
-            className="nav-link collapsed"
-            href="/"
-            data-toggle="collapse"
-            data-target="#collapseTwo"
-            aria-expanded="true"
-            aria-controls="collapseTwo"
-          >
-            <span>Citas</span>
-          </a>
-          <div
-            id="collapseTwo"
-            className="collapse"
-            aria-labelledby="headingTwo"
-            data-parent="#accordionSidebar"
-          >
-            <div className="bg-white py-2 collapse-inner rounded">
-              <h6 className="collapse-header">Citas</h6>
-              <NavLink to = "/cita" className="collapse-item"> 
-                Crear cita
-                </NavLink> 
-                
-              <NavLink  to = "/listacitas" className="collapse-item">
-                Gestionar citas
-                </NavLink>
-            </div>
-          </div>
         </li>
         {/* Divider */}
         <hr className="sidebar-divider" />
@@ -121,12 +89,46 @@ export default function AdminPage() {
               <NavLink to="/valoresreferencia" className="collapse-item" >
                 Valores Referenciales
               </NavLink>
-              <NavLink to="/listausuarios" className="collapse-item" >
+              <NavLink to="/listaexamenes" className="collapse-item" >
                 Gestionar examenes
               </NavLink>
             </div>
           </div>
         </li>
+        {/* Divider */}
+        <hr className="sidebar-divider" />
+        {/* Nav Item - Pages Collapse Menu */}
+        <li className="nav-item">
+          <a
+            className="nav-link collapsed"
+            href="/"
+            data-toggle="collapse"
+            data-target="#collapseTwo"
+            aria-expanded="true"
+            aria-controls="collapseTwo"
+          >
+            <span>Citas</span>
+          </a>
+          <div
+            id="collapseTwo"
+            className="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordionSidebar"
+          >
+            <div className="bg-white py-2 collapse-inner rounded">
+              <h6 className="collapse-header">Citas</h6>
+              <NavLink to = "/cita" className="collapse-item"> 
+                Crear cita
+                </NavLink> 
+                
+              <NavLink  to = "/listacitas" className="collapse-item">
+                Gestionar citas
+                </NavLink>
+            </div>
+          </div>
+        </li>
+        
+        
         <hr className="sidebar-divider" />
         {/* Nav Item - Pages Collapse Menu */}
         <li className="nav-item">

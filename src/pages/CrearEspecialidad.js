@@ -1,5 +1,6 @@
 import { ReactComponent as Logo } from "../assets/logopasteur.svg";
 import React from "react";
+import Swal from "sweetalert2";
 
 class CrearEspecialidad extends React.Component {
   constructor(props) {
@@ -17,7 +18,24 @@ class CrearEspecialidad extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const values = JSON.stringify(this.state);
-    alert(values);
+    fetch("http://localhost:8000/crearEspecialidad", {
+      body: values,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        Swal.fire(
+          'Especialidad creada con exito!',
+          '',
+          'success'
+        )
+      });
+      this.setState({ ...this.state, especialidad: "" });
+
+
   };
 
   render() {

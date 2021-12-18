@@ -1,18 +1,19 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { ReactComponent as Logo } from "../assets/logopasteur.svg";
+import Swal from "sweetalert2";
 
-const FormularioCita = ({ crearCita }) => {
+
+const FormularioCita = () => {
   //Crar state de citas
   const [cita, actualizarCita] = useState({
-    usuario:"",
+    usuario: "",
     fecha: "",
     hora: "",
     sede: "",
     tipo_examen: "",
-    sintomas: "",
+    observaciones: "",
   });
-
 
   //funcion que se ejecuta cada que el usario escribe en un input
   const actualizarstate = (event) => {
@@ -23,13 +24,29 @@ const FormularioCita = ({ crearCita }) => {
   };
 
   //Extraer los valores
-  const { usuario, fecha, hora, sintomas } = cita;
-  console.log(cita)
+  const { usuario, fecha, hora, observaciones } = cita;
+  console.log(cita);
 
   //Cuando el usuario preciona enviar cita.
   const submitCita = (event) => {
     event.preventDefault();
-    console.log(submitCita)
+    console.log(submitCita);
+    const values = JSON.stringify(cita);
+    fetch("http://localhost:8000/crearCita", {
+      body: values,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        Swal.fire(
+          'Cita agendada con exito!',
+          '',
+          'success'
+        )
+      });
 
     //Reinicar el form
     actualizarCita({
@@ -38,13 +55,12 @@ const FormularioCita = ({ crearCita }) => {
       hora: "",
       sede: "",
       tipo_examen: "",
-      sintomas: "",
+      observaciones: "",
     });
   };
 
   return (
     <Fragment>
-
       <form className="formcita" onSubmit={submitCita}>
         <div className="div-form">
           <Logo />
@@ -82,39 +98,49 @@ const FormularioCita = ({ crearCita }) => {
         <br />
         <div className="form-group">
           <label>Sede: </label>
-          <select defaultValue='' name="sede" className="form-select" aria-label="Default select example" onChange={actualizarstate} >
+          <select
+            defaultValue=""
+            name="sede"
+            className="form-select"
+            aria-label="Default select example"
+            onChange={actualizarstate}
+          >
             <option selected>Selecciona una opcion</option>
-            <option value='sede_norte' >
-              Sede Norte
-            </option>
-            <option value='sede_centro' >
-              Sede Centro
-            </option>
+            <option value="sede_norte">Sede Norte</option>
+            <option value="sede_centro">Sede Centro</option>
           </select>
         </div>
         <div className="form-group">
           <label>Tipo de examen: </label>
-          <select defaultValue='' name="tipo_examen" class="form-select" aria-label="Default select example"onChange={actualizarstate} >
-            <option selected value=''>Selecciona una opcion</option>
-            <option value='hemograma'>
-              Hemograma
+          <select
+            defaultValue=""
+            name="tipo_examen"
+            class="form-select"
+            aria-label="Default select example"
+            onChange={actualizarstate}
+          >
+            <option selected value="">
+              Selecciona una opcion
             </option>
-            <option value='perfil_lipidico'>
-              Perfil lipídico
-            </option>
+            <option value="hemograma">Hemograma</option>
+            <option value="perfil_lipidico">Perfil lipídico</option>
           </select>
         </div>
         <div>
-        <label>Observaciones</label>
-        <textarea
-          className="form-control"
-          name="sintomas"
-          onChange={actualizarstate}
-          value={sintomas}
-        ></textarea>
+          <label>Observaciones</label>
+          <textarea
+            className="form-control"
+            name="sintomas"
+            onChange={actualizarstate}
+            value={observaciones}
+          ></textarea>
         </div>
         <br />
-        <button type="submit" value="submit" className="btn btn-primary btn-block">
+        <button
+          type="submit"
+          value="submit"
+          className="btn btn-primary btn-block"
+        >
           Agendar Cita
         </button>
         <br />

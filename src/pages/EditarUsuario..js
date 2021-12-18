@@ -1,42 +1,69 @@
 import { ReactComponent as Logo } from "../assets/logopasteur.svg";
-import React from "react";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 
-class RegisterPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      rol: "",
-      tipo_document: "",
-      num_document: "",
-      nombres: "",
-      apellidos: "",
-      sexo: "",
-      email: "",
-      username: "",
-      password1: "",
-      password2: "",
-      estado: "",
-      condiciones: false,
-    };
+export default function EditarUsuario() {
+
+  var id = useParams()
+
+  var traerUsuario = () =>{
+    const values = JSON.stringify(id);
+    fetch("http://localhost:8000/traerUsuario", {
+      body: values,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        actualizarUsuario(data)
+      });
   }
-  handleChange = (e) => {
+
+  
+
+  useEffect(() => {
+    traerUsuario()
+  })
+
+
+  console.log(useParams())
+  const [usuario, actualizarUsuario] = useState({
+    _id: "",
+    rol: "",
+    tipo_document: "",
+    num_document: "",
+    nombres: "",
+    apellidos: "",
+    sexo: "",
+    email: "",
+    username: "",
+    password1: "",
+    password2: "",
+    estado: "",
+    condiciones: false,
+  });
+
+  var handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({ ...this.state, [name]: value });
+    actualizarUsuario({ ...usuario, [name]: value });
     console.log(name);
   };
 
-  toggleChange = () => {
-    this.setState({
-      condiciones: !this.state.condiciones,
+  var toggleChange = () => {
+    actualizarUsuario({
+      condiciones: !usuario.condiciones,
     });
   };
 
-  handleSubmit = (e) => {
+  var handleSubmit = (e) => {
     e.preventDefault();
-    const values = JSON.stringify(this.state);
-    fetch("http://localhost:8000/crearUsuario", {
+    const values = JSON.stringify(usuario);
+    fetch("http://localhost:8000/editarUsuario", {
       body: values,
       method: "POST",
       headers: {
@@ -46,28 +73,16 @@ class RegisterPage extends React.Component {
       .then((response) => response.json())
       .then((data) => {
         Swal.fire(
-          'Usuario registrado con exito!',
+          'Usuario modificado con exito!',
           '',
           'success'
         )
       });
-
   };
 
-  render() {
-    const {
-      num_document,
-      nombres,
-      apellidos,
-      email,
-      username,
-      password1,
-      password2,
-      condiciones,
-    } = this.state;
+  return (
 
-    return (
-      <form className="formCrearUsuario" onSubmit={this.handleSubmit}>
+      <form className="formEditUsuario" onSubmit={handleSubmit}>
         <div className="div-form">
           <Logo />
         </div>
@@ -75,11 +90,11 @@ class RegisterPage extends React.Component {
 
         <div className="form-group">
           <label>Tipo de usuario: </label>
-          <select
+          <select value = {usuario.rol}
             defaultValue=""
             name="rol"
             id="rol"
-            onChange={this.handleChange}
+            onChange={handleChange}
             className="form-control"
             aria-label="Default select example"
           >
@@ -93,10 +108,11 @@ class RegisterPage extends React.Component {
         <div className="form-group">
           <label>Tipo de documento: </label>
           <select
+            value={usuario.tipo_document}
             defaultValue=""
             name="tipo_document"
             id="tipo_document"
-            onChange={this.handleChange}
+            onChange={handleChange}
             className="form-control"
             aria-label="Default select example"
           >
@@ -113,8 +129,8 @@ class RegisterPage extends React.Component {
             type="number"
             name="num_document"
             className="form-control"
-            value={num_document}
-            onChange={this.handleChange}
+            value={usuario.num_document}
+            onChange={handleChange}
             placeholder="Numero documento"
           />
         </div>
@@ -126,8 +142,8 @@ class RegisterPage extends React.Component {
             name="nombres"
             className="form-control"
             placeholder="Nombres"
-            value={nombres}
-            onChange={this.handleChange}
+            value={usuario.nombres}
+            onChange={handleChange}
           />
         </div>
 
@@ -138,8 +154,8 @@ class RegisterPage extends React.Component {
             name="apellidos"
             className="form-control"
             placeholder="Apellidos"
-            value={apellidos}
-            onChange={this.handleChange}
+            value={usuario.apellidos}
+            onChange={handleChange}
           />
         </div>
 
@@ -151,7 +167,8 @@ class RegisterPage extends React.Component {
             name="sexo"
             id="hombre"
             value="hombre"
-            onChange={this.handleChange}
+            onChange={handleChange}
+            checked = {usuario.sexo ==="hombre"?true:false}
           />
           <label className="form-check-label" for="hombre">
             Hombre
@@ -163,7 +180,8 @@ class RegisterPage extends React.Component {
             name="sexo"
             id="mujer"
             value="mujer"
-            onChange={this.handleChange}
+            onChange={handleChange}
+            checked = {usuario.sexo ==="mujer"?true:false}
           />
           <label className="form-check-label" for="mujer">
             Mujer
@@ -177,8 +195,8 @@ class RegisterPage extends React.Component {
             name="email"
             className="form-control"
             placeholder="correo@correo.com"
-            value={email}
-            onChange={this.handleChange}
+            value={usuario.email}
+            onChange={handleChange}
           />
         </div>
 
@@ -188,8 +206,8 @@ class RegisterPage extends React.Component {
             type="text"
             name="username"
             className="form-control"
-            value={username}
-            onChange={this.handleChange}
+            value={usuario.username}
+            onChange={handleChange}
             placeholder="Username"
           />
         </div>
@@ -201,8 +219,8 @@ class RegisterPage extends React.Component {
             name="password1"
             className="form-control"
             placeholder="Ingrese su password"
-            value={password1}
-            onChange={this.handleChange}
+            value={usuario.password1}
+            onChange={handleChange}
           />
         </div>
 
@@ -213,24 +231,25 @@ class RegisterPage extends React.Component {
             name="password2"
             className="form-control"
             placeholder="Confirme su password"
-            value={password2}
-            onChange={this.handleChange}
+            value={usuario.password2}
+            onChange={handleChange}
           />
         </div>
 
         <div className="form-group">
           <label>Estado: </label>
           <select
+            value={usuario.estado}
             defaultValue=""
             name="estado"
             id="estado"
-            onChange={this.handleChange}
+            onChange={handleChange}
             className="form-control"
             aria-label="Default select example"
           >
             <option value="">Selecciona una opcion</option>
             <option value="activo">Activo</option>
-            <option value="Inactivo">Inactivo</option>
+            <option value="inactivo">Inactivo</option>
           </select>
         </div>
         <div className="form-check">
@@ -239,15 +258,15 @@ class RegisterPage extends React.Component {
             type="checkbox"
             name="condiciones"
             id="flexCheckDefault"
-            checked={condiciones}
-            onChange={this.toggleChange}
+            checked={usuario.condiciones}
+            onChange={toggleChange}
           />
           <label className="form-check-label" for="flexCheckDefault" checked>
             Acepto las políticas de privacidad de datos
           </label>
         </div>
         <button type="submit" className="btn btn-primary btn-block">
-          Sign Up
+          Guardar cambios
         </button>
         <p className="forgot-password text-right">
           Already registered <NavLink to="/login">sign in?</NavLink>
@@ -255,6 +274,3 @@ class RegisterPage extends React.Component {
       </form>
     );
   }
-}
-
-export default RegisterPage;

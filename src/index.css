@@ -102,7 +102,7 @@ ul li .result:hover{
 }
 
 /* Para dar estilos a los formularios */
-.formLogin, .formRegister, .formContact, .formcita, .formCrearUsuario, .formEspecialidad{
+.formLogin, .formRegister, .formContact, .formcita, .formCrearUsuario, .formEditUsuario, .formEspecialidad, .formReagendarcita{
     margin: 50px 0px 20px 35%;
     padding: 15px 15px 15px 20px;
     background-color: rgba(235, 241, 243, 0.993);
@@ -226,7 +226,7 @@ Accordion.Item{
 }
 
 
-.gestioncitas, .g-usuarios{
+.gestioncitas, .g-usuarios, .g-examenes{
     background: rgb(224, 198, 149);
     background-size: 100%;
     box-shadow: 6px 4px 2px 1px rgba(37, 36, 36, 0.52);
@@ -267,4 +267,8 @@ main{
 .btn-add{
     size: 50%;
     
+}
+
+.table-responsive{
+    overflow: auto!important;
 }

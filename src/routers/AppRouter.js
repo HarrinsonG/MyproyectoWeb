@@ -25,12 +25,16 @@ import UinternoPage from "../pages/UinternoPage";
 import UexternoPage from "../pages/UexternoPage";
 import FormularioCita from "../pages/FormularioCita";
 import ListaCitas from "../pages/ListaCitas";
+import ReagendarCita from "../pages/ReagendarCita";
 import ListaUsuarios from "../pages/ListaUsuarios";
 import CrearUsuario from "../pages/CrearUsuario";
+import EditarUsuario from "../pages/EditarUsuario.";
 import CrearExamen from "../pages/CrearExamen";
 import CrearEspecialidad from "../pages/CrearEspecialidad";
 import AgregarResultado from "../pages/AgregarResultado";
 import ValoresReferencia from "../pages/ValoresReferencia";
+import ListaExamenes from "../pages/ListaExamenes";
+import EditarExamen from "../pages/EditarExamen";
 
 export default function AppRouter() {
   return (
@@ -59,10 +63,14 @@ export default function AppRouter() {
             <Route path="/" component={AdminPage} />
             <Route path="/cita" component={FormularioCita} />
             <Route path="/listacitas" component={ListaCitas} />
+            <Route path="/reagendarcita" component={ReagendarCita} />
             <Route path="/crearusuario" component={CrearUsuario} />
+            <Route path="/editarusuario/:id" component={EditarUsuario} />
             <Route path="/listausuarios" component={ListaUsuarios} />
             <Route path="/crearespecialidad" component={CrearEspecialidad} />
             <Route path="/crearexamen" component={CrearExamen} />
+            <Route path="/listaexamenes" component={ListaExamenes} />
+            <Route path="/editarexamen/:id" component={EditarExamen} />
             <Route path="/agregarresultado" component={AgregarResultado} />
             <Route path="/valoresreferencia" component={ValoresReferencia} />
           </main>

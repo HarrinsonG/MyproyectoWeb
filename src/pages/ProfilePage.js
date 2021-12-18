@@ -4,7 +4,7 @@ export default function ProfilePage() {
     const { username } = useParams();
     return (
         <div>
-            <h1>ProfilePage: {username}</h1>            
+            <h1>Bienvenido: {username}</h1>            
         </div>
     )
 }
