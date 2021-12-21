@@ -30,22 +30,45 @@ class ValoresReferencia extends React.Component {
     alert(values);
   };
 
-  agregarParametro() {
-    const new_parametro = "Hola";
-    //this.state.parametros.push(new_parametro)
+  handleOnchange = (e, parametro) => {
+    console.log({
+      ...this.state,
+      parametros: [{ ...parametro, valor_referencia: e.target.value }],
+    });
     this.setState({
       ...this.state,
-      parametros: [...this.state.parametros, new_parametro],
+      parametros: [{ ...parametro, valor_referencia: e.target.value }],
     });
+  };
+
+  guardarValorReferencia() {
+    const values = JSON.stringify(this.state.parametros[0]);
+    fetch("http://localhost:8000/guardarValorReferencia", {
+      body: values,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        Swal.fire("Valor de referencia guardado con exito", "", "success");
+        this.setState({
+          especialidades: [],
+          especialidad: "",
+          parametros: [],
+        });
+      });
   }
 
+  
   async limpiarparametros(e) {
     this.setState({
       ...this.state,
       parametros: [],
       [e.target.name]: e.target.value,
     });
-    const values = JSON.stringify({especialidad:e.target.value});
+    const values = JSON.stringify({ especialidad: e.target.value });
     fetch("http://localhost:8000/listaExamenes", {
       body: values,
       method: "POST",
@@ -55,34 +78,40 @@ class ValoresReferencia extends React.Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
-        var examenes = {}
+        console.log(data);
+        var examenes = {};
         for (const examen of data) {
-          examenes[examen._id]=examen.nombre_examen
+          examenes[examen._id] = examen.nombre_examen;
         }
-        
+
         Swal.fire({
-          title: "Selecciona un examen de "+ e.target.value ,
+          title: "Selecciona un examen de " + e.target.value,
           input: "select",
-          inputOptions:examenes,
+          inputOptions: examenes,
           inputPlaceholder: "Selecciona un examen",
           showCancelButton: true,
-          inputValidator: (value) => {
-            return new Promise((resolve) => {
-              if (value === "examenes") {
-                resolve();
-              } else {
-                resolve("You need to select oranges :)");
-              }
+        }).then((examen) => {
+          console.log(examen);
+          const values = JSON.stringify({ id: examen.value });
+          fetch("http://localhost:8000/traerExamen", {
+            body: values,
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              data["valor_referencia"] = "";
+              this.setState({
+                ...this.state,
+                parametros: [...this.state.parametros, data],
+              });
+              console.log(this.state.parametros);
+              
             });
-          },
-        }).then((values)=>{
-          console.log(values)
-        })
-    
+        });
       });
-
-    
   }
 
   render() {
@@ -126,7 +155,6 @@ class ValoresReferencia extends React.Component {
               <thead>
                 <tr>
                   <th>Nombre del examen</th>
-                  <th>Resultado Paciente</th>
                   <th>Valores de Referencia</th>
                 </tr>
               </thead>
@@ -134,18 +162,13 @@ class ValoresReferencia extends React.Component {
                 {this.state.parametros.map((parametro) => {
                   return (
                     <tr>
-                      <td>Hemoglobina</td>
+                      <td>{parametro.nombre_examen}</td>
                       <td>
                         <input
-                          type="number"
-                          name="minimo"
-                          className="form-control"
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="number"
-                          name="maximo"
+                          type="text"
+                          value={parametro.valor_referencia}
+                          onChange={(e) => this.handleOnchange(e, parametro)}
+                          name={parametro._id}
                           className="form-control"
                         />
                       </td>
@@ -158,17 +181,12 @@ class ValoresReferencia extends React.Component {
           <Row>
             <Col></Col>
             <Col>
-              <Button
-                onClick={this.agregarParametro.bind(this)}
-                disabled={this.state.especialidad ? false : true}
-                variant="outline-dark"
-              >
-                Agregar parametro
-              </Button>
             </Col>
             <Col>
-              <Button variant="success">Guardar</Button>{" "}
-              <Button variant="warning">Editar</Button>{" "}
+              <Button onClick={this.guardarValorReferencia.bind(this)} variant="success">
+                Guardar
+              </Button>{" "}
+              {/* <Button variant="warning">Editar</Button>{" "} */}
             </Col>
           </Row>
           <br></br>

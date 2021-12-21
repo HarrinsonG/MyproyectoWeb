@@ -168,7 +168,7 @@ class AgregarResultado extends React.Component {
           <Col></Col>
           <Col></Col>
           <Col>
-            <Button variant="success">Guardar / Notificar</Button>{" "}
+            <Button href="http://localhost:8000/pdf" target="_blank" variant="success">Generar pdf</Button>{" "}
             <Button variant="warning">Editar</Button>{" "}
           </Col>
         </Row>

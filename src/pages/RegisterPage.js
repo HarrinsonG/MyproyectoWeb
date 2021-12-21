@@ -1,12 +1,13 @@
 import { ReactComponent as Logo } from "../assets/logopasteur.svg";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Swal from "sweetalert2";
 
 class RegisterPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      rol:"Paciente",
+      rol: "",
       tipo_document: "",
       num_document: "",
       nombres: "",
@@ -16,12 +17,13 @@ class RegisterPage extends React.Component {
       username: "",
       password1: "",
       password2: "",
+      estado: "",
       condiciones: false,
     };
   }
   handleChange = (e) => {
     const { name, value } = e.target;
-    this.setState({...this.state, [name]: value });
+    this.setState({ ...this.state, [name]: value });
     console.log(name);
   };
 
@@ -29,17 +31,40 @@ class RegisterPage extends React.Component {
     this.setState({
       condiciones: !this.state.condiciones,
     });
-  }
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
     const values = JSON.stringify(this.state);
-    alert(values);
+    fetch("http://localhost:8000/crearUsuario", {
+      body: values,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        Swal.fire("Usuario registrado con exito!", "", "success");
+      });
+    this.setState({
+      rol: "",
+      tipo_document: "",
+      num_document: "",
+      nombres: "",
+      apellidos: "",
+      sexo: "",
+      email: "",
+      username: "",
+      password1: "",
+      password2: "",
+      estado: "",
+      condiciones: false,
+    });
   };
 
   render() {
     const {
-      rol,
       num_document,
       nombres,
       apellidos,
@@ -51,40 +76,41 @@ class RegisterPage extends React.Component {
     } = this.state;
 
     return (
-      <form className="formRegister" onSubmit={this.handleSubmit}>
+      <form className="formCrearUsuario" onSubmit={this.handleSubmit}>
         <div className="div-form">
           <Logo />
         </div>
-        <h3>Registro</h3>
+        <h3>Registro de Pacientes</h3>
 
         <div className="form-group">
-          <label>Tipo de usuario:</label>
-          <input
-            type="text"
+          <label>Tipo de usuario: </label>
+          <select
+            defaultValue=""
             name="rol"
-            className="form-control"
+            id="rol"
             onChange={this.handleChange}
-            value={rol}
-            defaultValue='Paciente'
-            disabled
-          />
+            className="form-control"
+            aria-label="Default select example"
+          >
+            <option value="">Selecciona una opcion</option>
+            <option value="paciente">Paciente</option>
+          </select>
         </div>
 
         <div className="form-group">
-          <label   >Tipo de documento: </label>
-          <select  defaultValue='' name="tipo_document" id='tipo_document' onChange={this.handleChange}  className="form-control" aria-label="Default select example">
-            <option value='' >
-              Selecciona una opcion
-            </option>
-            <option value='ceduladeciudadania'  >
-              Cedula de ciudadania
-            </option>
-            <option  value='nuip' >
-              NUIP
-            </option>
-            <option value= 'tarjetadeidentidad'>
-              Tarjeta de identidad
-            </option>
+          <label>Tipo de documento: </label>
+          <select
+            defaultValue=""
+            name="tipo_document"
+            id="tipo_document"
+            onChange={this.handleChange}
+            className="form-control"
+            aria-label="Default select example"
+          >
+            <option value="">Selecciona una opcion</option>
+            <option value="ceduladeciudadania">Cedula de ciudadania</option>
+            <option value="nuip">NUIP</option>
+            <option value="tarjetadeidentidad">Tarjeta de identidad</option>
           </select>
         </div>
 
@@ -137,7 +163,7 @@ class RegisterPage extends React.Component {
           <label className="form-check-label" for="hombre">
             Hombre
           </label>
-          <br/>
+          <br />
           <input
             className="form-check-input"
             type="radio"
@@ -198,11 +224,27 @@ class RegisterPage extends React.Component {
             onChange={this.handleChange}
           />
         </div>
+
+        <div className="form-group">
+          <label>Estado: </label>
+          <select
+            defaultValue=""
+            name="estado"
+            id="estado"
+            onChange={this.handleChange}
+            className="form-control"
+            aria-label="Default select example"
+          >
+            <option value="">Selecciona una opcion</option>
+            <option value="activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+          </select>
+        </div>
         <div className="form-check">
           <input
             className="form-check-input"
             type="checkbox"
-            name='condiciones'
+            name="condiciones"
             id="flexCheckDefault"
             checked={condiciones}
             onChange={this.toggleChange}

@@ -35,6 +35,8 @@ import AgregarResultado from "../pages/AgregarResultado";
 import ValoresReferencia from "../pages/ValoresReferencia";
 import ListaExamenes from "../pages/ListaExamenes";
 import EditarExamen from "../pages/EditarExamen";
+import ListaValoresReferencia from "../pages/ListaValoresReferenciales";
+import EditarValoresReferencia from "../pages/EditarValoresReferencia"
 
 export default function AppRouter() {
   return (
@@ -73,6 +75,8 @@ export default function AppRouter() {
             <Route path="/editarexamen/:id" component={EditarExamen} />
             <Route path="/agregarresultado" component={AgregarResultado} />
             <Route path="/valoresreferencia" component={ValoresReferencia} />
+            <Route path="/listavaloresreferencia" component={ListaValoresReferencia} />
+            <Route path="/editarvaloresreferencia/:id" component={EditarValoresReferencia} />
           </main>
         </Router>
 

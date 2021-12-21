@@ -86,11 +86,39 @@ export default function AdminPage() {
               <NavLink to="/crearexamen" className="collapse-item" >
                 Crear examen
               </NavLink>
+              <NavLink to="/listaexamenes" className="collapse-item" >
+                Gestionar examenes
+              </NavLink>
+            </div>
+          </div>
+        </li>
+        {/* Divider */}
+        <hr className="sidebar-divider" />
+        {/* Nav Item - Pages Collapse Menu */}
+        <li className="nav-item">
+          <a
+            className="nav-link collapsed"
+            href="/"
+            data-toggle="collapse"
+            data-target="#collapseValoresReferencia"
+            aria-expanded="true"
+            aria-controls="collapseValoresReferencia"
+          >
+            <span>Valores Referenciales</span>
+          </a>
+          <div
+            id="collapseValoresReferencia"
+            className="collapse"
+            aria-labelledby="headingValoresReferencia"
+            data-parent="#accordionSidebar"
+          >
+            <div className="bg-white py-3 collapse-inner rounded">
+              <h6 className="collapse-header">Valores Referenciales</h6>
               <NavLink to="/valoresreferencia" className="collapse-item" >
                 Valores Referenciales
               </NavLink>
-              <NavLink to="/listaexamenes" className="collapse-item" >
-                Gestionar examenes
+              <NavLink to="/listavaloresreferencia" className="collapse-item" >
+                Lista Valor Referencial
               </NavLink>
             </div>
           </div>

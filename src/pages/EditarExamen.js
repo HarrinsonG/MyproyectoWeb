@@ -21,6 +21,7 @@ export default function EditarExamen() {
         actualizarExamen(data);
         console.log(examen);
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [examen, actualizarExamen] = useState({

@@ -81,9 +81,9 @@ class LoginPage extends React.Component {
             Recordarme contraseña
           </label>
         </div>
-        <button type="submit" className="btn btn-primary btn-block">
+        <NavLink to="/username/:admin"><button type="submit" className="btn btn-primary btn-block">
           Sign in
-        </button>
+        </button></NavLink>  
         <p className="forgot-password text-right">
           Not registered <NavLink to="/register">sign up?</NavLink>
         </p>

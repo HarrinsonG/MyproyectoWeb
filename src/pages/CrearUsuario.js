@@ -3,7 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 
-class RegisterPage extends React.Component {
+class CrearUsuario extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,13 +45,22 @@ class RegisterPage extends React.Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        Swal.fire(
-          'Usuario registrado con exito!',
-          '',
-          'success'
-        )
+        Swal.fire("Usuario registrado con exito!", "", "success");
       });
-
+    this.setState({
+      rol: "",
+      tipo_document: "",
+      num_document: "",
+      nombres: "",
+      apellidos: "",
+      sexo: "",
+      email: "",
+      username: "",
+      password1: "",
+      password2: "",
+      estado: "",
+      condiciones: false,
+    });
   };
 
   render() {
@@ -257,4 +266,4 @@ class RegisterPage extends React.Component {
   }
 }
 
-export default RegisterPage;
+export default CrearUsuario;
